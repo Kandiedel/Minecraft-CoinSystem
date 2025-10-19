@@ -1,12 +1,33 @@
 package de.kandiedel.coinSystem;
 
+import de.kandiedel.coinSystem.mysql.MySQLManager;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CoinSystem extends JavaPlugin {
 
+    private MySQLManager mySQLManager;
+
     @Override
     public void onEnable() {
+
+        saveDefaultConfig();
+
+        mySQLManager = new MySQLManager(
+                getConfig().getString("MySQL.host"),
+                getConfig().getInt("MySQL.port"),
+                getConfig().getString("MySQL.database"),
+                getConfig().getString("MySQL.username"),
+                getConfig().getString("MySQL.password"));
+        mySQLManager.connect();
+        if (mySQLManager.isConnected()) {
+            mySQLManager.createTable("player_coins",
+                    "uuid CHAR(36) NOT NULL PRIMARY KEY," +
+                            "username VARCHAR(32) NOT NULL," +
+                            "coins BIGINT NOT NULL DEFAULT 0," +
+                            "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
+        }
+
         getServer().getConsoleSender().sendMessage("");
         getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "============================================");
         getServer().getConsoleSender().sendMessage("");
@@ -24,6 +45,9 @@ public final class CoinSystem extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
+        mySQLManager.disconnect();
+
         getServer().getConsoleSender().sendMessage("");
         getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=============================================");
         getServer().getConsoleSender().sendMessage("");
