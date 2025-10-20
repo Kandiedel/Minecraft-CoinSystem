@@ -7,3 +7,6 @@ MySQL:
   database: ""
   username: ""
   password: ""
+
+CoinSystem:
+  start-coins: 1000

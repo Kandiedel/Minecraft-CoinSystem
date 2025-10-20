@@ -1,5 +1,6 @@
 package de.kandiedel.coinSystem;
 
+import de.kandiedel.coinSystem.listener.PlayerJoinListener;
 import de.kandiedel.coinSystem.mysql.MySQLManager;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,6 +28,8 @@ public final class CoinSystem extends JavaPlugin {
                             "coins BIGINT NOT NULL DEFAULT 0," +
                             "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
         }
+
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this,  mySQLManager), this);
 
         getServer().getConsoleSender().sendMessage("");
         getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "============================================");
