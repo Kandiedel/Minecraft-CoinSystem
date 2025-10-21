@@ -29,25 +29,7 @@ public class MySQLManager {
                 connection = DriverManager.getConnection(
                         "jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true", username, password
                 );
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "==============================================");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[ MySQL ] "
-                        + ChatColor.GRAY + "Connection successfully established!");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "==============================================");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
             } catch (SQLException e) {
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=====================================");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "[ MySQL ] "
-                        + ChatColor.GRAY + "Connection not established!");
-                Bukkit.getServer().getConsoleSender().sendMessage("            "
-                        + ChatColor.GRAY + "Wrong Credentials? ");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=====================================");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
             }
         }
     }
@@ -67,23 +49,7 @@ public class MySQLManager {
         if (isConnected()) {
             try {
                 connection.close();
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=========================================");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[ MySQL ] "
-                        + ChatColor.GRAY + "Connection successfully closed!");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=========================================");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
             } catch (SQLException e) {
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=========================================");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "[ MySQL ] "
-                        + ChatColor.GRAY + "Connection could not be closed!");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=========================================");
-                Bukkit.getServer().getConsoleSender().sendMessage("");
             }
         }
     }
