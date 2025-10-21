@@ -1,5 +1,7 @@
 package de.kandiedel.coinSystem;
 
+import de.kandiedel.coinSystem.coins.CoinManager;
+import de.kandiedel.coinSystem.commands.CoinCommand;
 import de.kandiedel.coinSystem.listener.PlayerJoinListener;
 import de.kandiedel.coinSystem.mysql.MySQLManager;
 import org.bukkit.ChatColor;
@@ -7,7 +9,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CoinSystem extends JavaPlugin {
 
+    private static final String PREFIX = "§5§lCoinSystem §f§l\uD83E\uDE99 §7";
+
     private MySQLManager mySQLManager;
+    private CoinManager coinManager;
 
     @Override
     public void onEnable() {
@@ -29,7 +34,11 @@ public final class CoinSystem extends JavaPlugin {
                             "last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
         }
 
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this,  mySQLManager), this);
+        coinManager = new CoinManager(this, mySQLManager);
+
+        getCommand("coins").setExecutor(new CoinCommand(this, coinManager));
+
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this,  mySQLManager, coinManager), this);
 
         getServer().getConsoleSender().sendMessage("");
         getServer().getConsoleSender().sendMessage(ChatColor.GRAY + ChatColor.STRIKETHROUGH.toString() + "----------------------------------------------");
@@ -85,5 +94,9 @@ public final class CoinSystem extends JavaPlugin {
         getServer().getConsoleSender().sendMessage("");
         getServer().getConsoleSender().sendMessage(ChatColor.GRAY + ChatColor.STRIKETHROUGH.toString() + "-----------------------------------------------");
         getServer().getConsoleSender().sendMessage("");
+    }
+
+    public static String getPrefix() {
+        return PREFIX;
     }
 }

@@ -4,3 +4,5 @@ main: de.kandiedel.coinSystem.CoinSystem
 api-version: '1.21'
 authors: [ Kandiedel ]
 description: CoinSystem By Kandiedel
+commands:
+  coins:
