@@ -32,17 +32,37 @@ public final class CoinSystem extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this,  mySQLManager), this);
 
         getServer().getConsoleSender().sendMessage("");
-        getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "============================================");
+        getServer().getConsoleSender().sendMessage(ChatColor.GRAY + ChatColor.STRIKETHROUGH.toString() + "----------------------------------------------");
         getServer().getConsoleSender().sendMessage("");
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[ ✔ ] "
-                + ChatColor.DARK_PURPLE + getDescription().getName()
-                + ChatColor.GRAY + " successfully enabled!"
-                + ChatColor.GREEN + " [ ✔ ]");
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + " [ ✔ ] "
+                + ChatColor.DARK_PURPLE + ChatColor.BOLD + getDescription().getName()
+                + ChatColor.GRAY + ChatColor.BOLD + " successfully enabled!"
+                + ChatColor.GREEN + ChatColor.BOLD + " [ ✔ ]");
         getServer().getConsoleSender().sendMessage("        "
-                + ChatColor.GRAY + "Developed By "
-                + ChatColor.DARK_PURPLE + "Kandiedel " + ChatColor.GRAY + "⚒ ");
+                + ChatColor.GRAY + ChatColor.BOLD + "Developed By "
+                + ChatColor.DARK_PURPLE + ChatColor.BOLD + "Kandiedel "
+                + ChatColor.GRAY + ChatColor.BOLD + "⚒ ");
         getServer().getConsoleSender().sendMessage("");
-        getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "============================================");
+        if (mySQLManager.isConnected()) {
+            getServer().getConsoleSender().sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + " [ ✔ ] "
+                    + ChatColor.DARK_PURPLE + ChatColor.BOLD + "MySQL"
+                    + ChatColor.GRAY + ChatColor.BOLD + " connection established!"
+                    + ChatColor.GREEN + ChatColor.BOLD + " [ ✔ ]");
+            getServer().getConsoleSender().sendMessage("        "
+                    + ChatColor.GRAY + ChatColor.BOLD + "Using Database "
+                    + ChatColor.DARK_PURPLE + ChatColor.BOLD + getConfig().getString("MySQL.database"));
+        } else {
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + " [ ✖ ] "
+                    + ChatColor.DARK_PURPLE + ChatColor.BOLD + "MySQL"
+                    + ChatColor.GRAY + ChatColor.BOLD + " could not be established!"
+                    + ChatColor.RED + ChatColor.BOLD + " [ ✖ ]");
+            getServer().getConsoleSender().sendMessage("        "
+                    + ChatColor.GRAY + ChatColor.BOLD + "Wrong"
+                    + ChatColor.DARK_PURPLE + ChatColor.BOLD + " credentials"
+                    + ChatColor.GRAY + ChatColor.BOLD + "?");
+        }
+        getServer().getConsoleSender().sendMessage("");
+        getServer().getConsoleSender().sendMessage(ChatColor.GRAY + ChatColor.STRIKETHROUGH.toString() + "----------------------------------------------");
         getServer().getConsoleSender().sendMessage("");
     }
 
@@ -52,17 +72,18 @@ public final class CoinSystem extends JavaPlugin {
         mySQLManager.disconnect();
 
         getServer().getConsoleSender().sendMessage("");
-        getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=============================================");
+        getServer().getConsoleSender().sendMessage(ChatColor.GRAY + ChatColor.STRIKETHROUGH.toString() + "-----------------------------------------------");
         getServer().getConsoleSender().sendMessage("");
-        getServer().getConsoleSender().sendMessage(ChatColor.RED + "[ ✖ ] "
-                + ChatColor.DARK_PURPLE + getDescription().getName()
-                + ChatColor.GRAY + " successfully disabled!"
-                + ChatColor.RED + " [ ✖ ]");
+        getServer().getConsoleSender().sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + "[ ✖ ] "
+                + ChatColor.DARK_PURPLE + ChatColor.BOLD + getDescription().getName()
+                + ChatColor.GRAY + ChatColor.BOLD + " successfully disabled!"
+                + ChatColor.RED + ChatColor.BOLD + " [ ✖ ]");
         getServer().getConsoleSender().sendMessage("        "
-                + ChatColor.GRAY + "Developed By "
-                + ChatColor.DARK_PURPLE + "Kandiedel " + ChatColor.GRAY + "⚒ ");
+                + ChatColor.GRAY + ChatColor.BOLD + "Developed By "
+                + ChatColor.DARK_PURPLE + ChatColor.BOLD + "Kandiedel "
+                + ChatColor.GRAY + ChatColor.BOLD + "⚒ ");
         getServer().getConsoleSender().sendMessage("");
-        getServer().getConsoleSender().sendMessage(ChatColor.WHITE + "=============================================");
+        getServer().getConsoleSender().sendMessage(ChatColor.GRAY + ChatColor.STRIKETHROUGH.toString() + "-----------------------------------------------");
         getServer().getConsoleSender().sendMessage("");
     }
 }
